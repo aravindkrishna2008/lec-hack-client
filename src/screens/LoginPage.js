@@ -26,7 +26,9 @@ export default function LoginPage() {
             style={styles.insideInput}
             placeholder="Email"
             placeholderTextColor={"#fff"}
-            dfa
+            autoCapitalize={false}
+            autoComplete={false}
+            autoCorrect={false}
           />
         </View>
         <View style={styles.input}>
@@ -37,6 +39,9 @@ export default function LoginPage() {
             placeholder="Password"
             placeholderTextColor={"#fff"}
             secureTextEntry
+            autoCapitalize={false}
+            autoComplete={false}
+            autoCorrect={false}
           />
         </View>
         <TouchableOpacity

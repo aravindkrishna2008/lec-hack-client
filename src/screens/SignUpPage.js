@@ -1,16 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
+  View,
   StyleSheet,
   Text,
-  View,
   Image,
-  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Alert,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
+import { auth } from "../../firebase_init";
+import { db } from "../../firebase_init";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
+import urid from "urid";
 
-export default function SignUpPage() {
-  const [email, setEmail] = useState("");
+const SignUpScreen = ({ navigation: { navigate } }) => {
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(""); // <-- add this line
+
+  const handleSignUp = async () => {
+    createUserWithEmailAndPassword(auth, email, password).then(
+      (userCredentials) => {
+        const user = userCredentials.user;
+      }
+    );
+    navigate("HomePage");
+  };
+
   return (
     <View style={styles.container}>
       <Image
@@ -26,7 +56,9 @@ export default function SignUpPage() {
             style={styles.insideInput}
             placeholder="Email"
             placeholderTextColor={"#fff"}
-            dfa
+            autoCapitalize={false}
+            autoComplete={false}
+            autoCorrect={false}
           />
         </View>
         <View style={styles.input}>
@@ -37,18 +69,23 @@ export default function SignUpPage() {
             placeholder="Password"
             placeholderTextColor={"#fff"}
             secureTextEntry
+            autoCapitalize={false}
+            autoComplete={false}
+            autoCorrect={false}
           />
         </View>
         <TouchableOpacity
           style={styles.button1}
-          onPress={() => navigate("SignUp")}
+          onPress={() => {
+            handleSignUp();
+          }}
         >
-          <Text style={styles.text1}>Sign Up</Text>
+          <Text style={styles.text1}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -106,3 +143,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
+
+export default SignUpScreen;
