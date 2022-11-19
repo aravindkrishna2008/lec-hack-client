@@ -13,11 +13,28 @@ import {
   StatusBar,
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase_init";
 
 export default function HomePage({ navigation: { navigate } }) {
+  const SignOut = () => {
+    signOut(auth)
+      .then(() => {
+        console.log("signed out");
+        navigate("Home");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
+      <TouchableOpacity style={styles.backButton} onPress={() => SignOut()}>
+        <AntDesign name="back" size={32} color="white" />
+      </TouchableOpacity>
       <View style={styles.inputContainer}>
         <View style={styles.containerOutside}>
           <View>
@@ -32,6 +49,23 @@ export default function HomePage({ navigation: { navigate } }) {
               onPress={() => navigate("ApiPage")}
             >
               <FontAwesome5 name="plus" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* TODO: add the feature to explore plans*/}
+        <View style={styles.containerOutside}>
+          <View>
+            <Text style={styles.title}>Explore</Text>
+            <Text style={styles.description}>
+              Discover popular hiking trails{" "}
+            </Text>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={styles.button}
+              // onPress={() => navigate("ApiPage")}
+            >
+              <FontAwesome5 name="mountain" size={24} color="#05143f" />
             </TouchableOpacity>
           </View>
         </View>
@@ -117,5 +151,12 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     justifyContent: "center",
     alignItems: "center",
+  },
+  backButton: {
+    position: "absolute",
+    zIndex: 99,
+    left: 0,
+    top: 10,
+    padding: 25,
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -25,6 +25,16 @@ export default function LoginPage({ navigation: { navigate } }) {
       }
     );
   };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        navigate("HomePage");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <>

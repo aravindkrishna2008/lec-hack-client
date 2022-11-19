@@ -21,7 +21,7 @@ const ApiPage = () => {
     const getData = async () => {
       const data = await axios
         .get(
-          "https://developer.nps.gov/api/v1/activities/parks?id=&q=hiking&api_key=7o6gVoqugCb39jY9QMHXMR50TLvue5GAjwC6tb1L",
+          "https://developer.nps.gov/api/v1/activities/parks?id=&q=hiking&limit=10&api_key=7o6gVoqugCb39jY9QMHXMR50TLvue5GAjwC6tb1L",
           config
         )
         .then((res) => {
