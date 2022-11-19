@@ -12,26 +12,28 @@ import {
   SafeAreaView,
   StatusBar,
 } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 export default function HomePage() {
   return (
     <View style={styles.container}>
-    <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
-    <View styles={styles.buttonContaienr}>
-      <TouchableOpacity
-        style={styles.button1}
-        onPress={() => navigate("Login")}
-      >
-        <Text style={styles.text1}>Create a trip</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button2}
-        onPress={() => navigate("SignUp")}
-      >
-        <Text style={styles.text2}>Sign Up</Text>
-      </TouchableOpacity>
+      <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
+      <View style={styles.inputContainer}>
+        <View style={styles.containerOutside}>
+          <View>
+            <Text style={styles.title}>Create New Plan</Text>
+            <Text style={styles.description}>
+              Create a new plan for your next camping trip!
+            </Text>
+          </View>
+          <View>
+            <TouchableOpacity style={styles.button}>
+              <FontAwesome5 name="plus" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </View>
-  </View>
   );
 }
 
@@ -47,11 +49,11 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     position: "absolute",
-    marginTop: "96%",
+    marginTop: "72%",
     backgroundColor: "#05143f",
-    width: "99%",
+    width: "100%",
     borderRadius: "20%",
-    marginLeft: "1%",
+    height: "100%",
   },
   img: {
     width: "100%",
@@ -71,9 +73,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   title: {
-    marginTop: 25,
+    marginTop: 6,
     color: "#fff",
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: "bold",
   },
   button1: {
@@ -89,5 +91,28 @@ const styles = StyleSheet.create({
     color: "#05143f",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  containerOutside: {
+    backgroundColor: "#112a72",
+    width: "88%",
+    marginTop: "6%",
+    padding: 16,
+    borderRadius: "20%",
+    flexDirection: "row",
+  },
+  description: {
+    color: "#fff",
+    fontSize: 16,
+    marginTop: 8,
+    width: 280,
+  },
+  button: {
+    height: 72,
+    width: 72,
+    backgroundColor: "white",
+    marginLeft: -30,
+    borderRadius: 100,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
