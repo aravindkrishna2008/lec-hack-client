@@ -6,52 +6,81 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { AntDesign } from "@expo/vector-icons";
 
-export default function LoginPage() {
+import { auth } from "../../firebase_init";
+
+export default function LoginPage({ navigation: { navigate } }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password).then(
+      async (userCredentials) => {
+        navigate("HomePage");
+      }
+    );
+  };
+
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.img}
-        source={require("../../assets/imgs/IMG2.jpg")}
-      />
-      <View style={styles.inputContainer}>
-        <Text style={styles.title}>Login to Camplance</Text>
-        <View style={styles.input}>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            style={styles.insideInput}
-            placeholder="Email"
-            placeholderTextColor={"#fff"}
-            autoCapitalize={false}
-            autoComplete={false}
-            autoCorrect={false}
+    <>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          Keyboard.dismiss();
+        }}
+      >
+        <View style={styles.container}>
+          <AntDesign
+            name="back"
+            size={24}
+            color="white"
+            style={styles.backButton}
           />
-        </View>
-        <View style={styles.input}>
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            style={styles.insideInput}
-            placeholder="Password"
-            placeholderTextColor={"#fff"}
-            secureTextEntry
-            autoCapitalize={false}
-            autoComplete={false}
-            autoCorrect={false}
+          <Image
+            style={styles.img}
+            source={require("../../assets/imgs/IMG2.jpg")}
           />
+          <View style={styles.inputContainer}>
+            <Text style={styles.title}>Login to Camplance</Text>
+            <View style={styles.input}>
+              <TextInput
+                value={email}
+                onChangeText={setEmail}
+                style={styles.insideInput}
+                placeholder="Email"
+                placeholderTextColor={"#fff"}
+                autoCapitalize={false}
+                autoComplete={false}
+                autoCorrect={false}
+              />
+            </View>
+            <View style={styles.input}>
+              <TextInput
+                value={password}
+                onChangeText={setPassword}
+                style={styles.insideInput}
+                placeholder="Password"
+                placeholderTextColor={"#fff"}
+                secureTextEntry
+                autoCapitalize={false}
+                autoComplete={false}
+                autoCorrect={false}
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.button1}
+              onPress={() => handleLogin()}
+            >
+              <Text style={styles.text1}>Login</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity
-          style={styles.button1}
-          onPress={() => navigate("SignUp")}
-        >
-          <Text style={styles.text1}>Login</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      </TouchableWithoutFeedback>
+    </>
   );
 }
 
@@ -109,5 +138,8 @@ const styles = StyleSheet.create({
     color: "#05143f",
     fontWeight: "bold",
     fontSize: 18,
+  },
+  backButton: {
+    zIndex: 99,
   },
 });
