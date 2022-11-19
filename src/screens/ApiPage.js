@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, View, StyleSheet, useEffect, useState } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet } from "react-native";
 import axios from "axios";
 
 const config = {
@@ -17,7 +17,7 @@ const ApiPage = () => {
           config
         )
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
         });
     };
     getData();
