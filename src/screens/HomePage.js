@@ -6,6 +6,11 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  ScrollView,
+  Dimensions,
+  FlatList,
+  SafeAreaView,
+  StatusBar,
 } from "react-native";
 
 export default function HomePage() {
