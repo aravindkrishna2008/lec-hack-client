@@ -16,7 +16,11 @@ import {
 export default function HomePage() {
   return (
     <View>
-      <Text>HomePage</Text>
+      <Text>Welcome</Text>
+      <Image
+        style={styles.img}
+        source={require("../../assets/imgs/bob.jpg")}
+      />
     </View>
   );
 }
