@@ -7,6 +7,7 @@ import { StyleSheet, Text, View } from "react-native";
 import StartUpPage from "./src/screens/StartUpPage";
 import SignUpPage from "./src/screens/SignUpPage";
 import HomePage from "./src/screens/HomePage";
+import ApiPage from "./src/screens/ApiPage";
 
 //Navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -36,6 +37,11 @@ function MyStack() {
       <Stack.Screen
         name="HomePage"
         component={HomePage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ApiPage"
+        component={ApiPage}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
