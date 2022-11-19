@@ -15,10 +15,23 @@ import {
 
 export default function HomePage() {
   return (
-    <View>
-      <Text>Welcome</Text>
-      <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
+    <View style={styles.container}>
+    <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
+    <View styles={styles.buttonContaienr}>
+      <TouchableOpacity
+        style={styles.button1}
+        onPress={() => navigate("Login")}
+      >
+        <Text style={styles.text1}>Create a trip</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button2}
+        onPress={() => navigate("SignUp")}
+      >
+        <Text style={styles.text2}>Sign Up</Text>
+      </TouchableOpacity>
     </View>
+  </View>
   );
 }
 
