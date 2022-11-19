@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
-export default function HomePage() {
+export default function HomePage({ navigation: { navigate } }) {
   return (
     <View style={styles.container}>
       <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
@@ -27,7 +27,10 @@ export default function HomePage() {
             </Text>
           </View>
           <View>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigate("ApiPage")}
+            >
               <FontAwesome5 name="plus" size={24} color="black" />
             </TouchableOpacity>
           </View>
