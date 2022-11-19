@@ -5,17 +5,33 @@ import { StyleSheet, Text, View } from "react-native";
 
 //Screens
 import StartUpPage from "./src/screens/StartUpPage";
+import SignUpPage from "./src/screens/SignUpPage";
 
 //Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import LoginPage from "./src/screens/LoginPage";
 
 const Stack = createStackNavigator();
 
 function MyStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={StartUpPage} />
+      <Stack.Screen
+        name="Home"
+        component={StartUpPage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUpPage}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginPage}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }

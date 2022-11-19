@@ -8,18 +8,21 @@ import {
   ImageBackground,
 } from "react-native";
 
-export default function StartUpPage() {
+export default function StartUpPage({ navigation: { navigate } }) {
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.img}
-        source={require("../../assets/imgs/IMG_0820.jpg")}
-      />
+      <Image style={styles.img} source={require("../../assets/imgs/hi.jpg")} />
       <View styles={styles.buttonContaienr}>
-        <TouchableOpacity style={styles.button1}>
+        <TouchableOpacity
+          style={styles.button1}
+          onPress={() => navigate("Login")}
+        >
           <Text style={styles.text1}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button2}>
+        <TouchableOpacity
+          style={styles.button2}
+          onPress={() => navigate("SignUp")}
+        >
           <Text style={styles.text2}>Sign Up</Text>
         </TouchableOpacity>
       </View>
