@@ -34,12 +34,12 @@ export default function LoginPage({ navigation: { navigate } }) {
         }}
       >
         <View style={styles.container}>
-          <AntDesign
-            name="back"
-            size={24}
-            color="white"
+          <TouchableOpacity
             style={styles.backButton}
-          />
+            onPress={() => navigate("Home")}
+          >
+            <AntDesign name="back" size={32} color="white" />
+          </TouchableOpacity>
           <Image
             style={styles.img}
             source={require("../../assets/imgs/IMG2.jpg")}
@@ -140,6 +140,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   backButton: {
+    position: "absolute",
     zIndex: 99,
+    left: 0,
+    top: 10,
+    padding: 25,
   },
 });
