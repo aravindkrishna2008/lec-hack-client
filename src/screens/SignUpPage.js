@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext } from "react";
 import {
   View,
   StyleSheet,
@@ -8,15 +8,15 @@ import {
   TouchableWithoutFeedback,
   Alert,
   TouchableOpacity,
-  TextInput
-} from 'react-native'
-import { auth, db } from '../../firebase_init'
-import { AntDesign } from '@expo/vector-icons'
+  TextInput,
+} from "react-native";
+import { auth, db } from "../../firebase_init";
+import { AntDesign } from "@expo/vector-icons";
 
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from 'firebase/auth'
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import {
   collection,
   addDoc,
@@ -25,39 +25,40 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  setDoc
-} from 'firebase/firestore'
-import urid from 'urid'
+  setDoc,
+} from "firebase/firestore";
+import urid from "urid";
 
 const SignUpScreen = ({ navigation: { navigate } }) => {
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('') // <-- add this line
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(""); // <-- add this line
 
   const handleSignUp = async () => {
     createUserWithEmailAndPassword(auth, email, password).then(
       (userCredentials) => {
-        const user = userCredentials.user
+        const user = userCredentials.user;
+        console.log(user.uid);
       }
-    )
-    navigate('HomePage')
-  }
+    );
+    navigate("HomePage");
+  };
 
   return (
     <TouchableWithoutFeedback
       onPress={() => {
-        Keyboard.dismiss()
+        Keyboard.dismiss();
       }}
     >
       <View style={styles.container}>
         <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigate('Home')}
+          onPress={() => navigate("Home")}
         >
           <AntDesign name="back" size={32} color="white" />
         </TouchableOpacity>
         <Image
           style={styles.img}
-          source={require('../../assets/imgs/IMG2.jpg')}
+          source={require("../../assets/imgs/IMG2.jpg")}
         />
         <View style={styles.inputContainer}>
           <Text style={styles.title}>Sign up for Camplance</Text>
@@ -67,7 +68,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               onChangeText={setEmail}
               style={styles.insideInput}
               placeholder="Email"
-              placeholderTextColor={'#fff'}
+              placeholderTextColor={"#fff"}
               autoCapitalize={false}
               autoComplete={false}
               autoCorrect={false}
@@ -79,7 +80,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               onChangeText={setPassword}
               style={styles.insideInput}
               placeholder="Password"
-              placeholderTextColor={'#fff'}
+              placeholderTextColor={"#fff"}
               secureTextEntry
               autoCapitalize={false}
               autoCorrect={false}
@@ -89,7 +90,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
           <TouchableOpacity
             style={styles.button1}
             onPress={() => {
-              handleSignUp()
+              handleSignUp();
             }}
           >
             <Text style={styles.text1}>Register</Text>
@@ -97,8 +98,8 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
         </View>
       </View>
     </TouchableWithoutFeedback>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -164,4 +165,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignUpScreen
+export default SignUpScreen;
