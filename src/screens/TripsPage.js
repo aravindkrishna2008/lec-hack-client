@@ -1,8 +1,10 @@
 import React from "react";
-import { Text, View, StyleSheet, TextInput } from "react-native";
+import { Text, View, StyleSheet, TextInput, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { getAuth } from "firebase/auth";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { AntDesign } from "@expo/vector-icons";
 
 const TripsPage = () => {
   const [title, setTitle] = React.useState("");
@@ -30,42 +32,60 @@ const TripsPage = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <Image
+        style={styles.img}
+        source={require("../../assets/imgs/IMG4.jpg")}
+      />
       <TextInput placeholder="Title" onChangeText={setTitle} value={title} />
-      <View style={styles.input}>
-        <TextInput
-          style={styles.insideInput}
-          placeholder="Description"
-          onChangeText={setDesc}
-          value={desc}
-          placeholderTextColor={"wh"}
-        />
+      <View style={styles.inputContainer}>
+        <Text style={styles.title}>Create a new Trip</Text>
+
+        <View style={styles.input}>
+          <TextInput
+            selectionColor={"white"}
+            style={styles.insideInput}
+            placeholder="Description"
+            onChangeText={setDesc}
+            value={desc}
+            placeholderTextColor={"white"}
+          />
+        </View>
+        <View style={styles.input}>
+          <TextInput
+            selectionColor={"white"}
+            style={styles.insideInput}
+            placeholder="Route Link"
+            onChangeText={setRoute}
+            value={route}
+            placeholderTextColor={"white"}
+          />
+        </View>
+        <View style={styles.input}>
+          <TextInput
+            selectionColor={"white"}
+            style={styles.insideInput}
+            placeholder="Mileage"
+            onChangeText={onChangeNumber}
+            value={number}
+            keyboardType="numeric"
+            placeholderTextColor={"white"}
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.button1}
+          onPress={async () => await submit()}
+        >
+          <Text style={styles.text1}>Submit</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigate("Home")}
+        >
+          <AntDesign name="back" size={32} color="white" />
+        </TouchableOpacity>
       </View>
-      <View style={styles.input}>
-        <TextInput
-          style={styles.insideInput}
-          placeholder="Route Link"
-          onChangeText={setRoute}
-          value={route}
-          placeholderTextColor={"white"}
-        />
-      </View>
-      <View style={styles.input}>
-        <TextInput
-          placeholder="Mileage"
-          onChangeText={onChangeNumber}
-          value={number}
-          keyboardType="numeric"
-          placeholderTextColor={"white"}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.button1}
-        onPress={async () => await submit()}
-      >
-        <Text>Submit</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -112,7 +132,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button1: {
-    width: "72%",
+    width: 300,
     height: 50,
     backgroundColor: "#fff",
     marginTop: 40,
@@ -128,8 +148,8 @@ const styles = StyleSheet.create({
   backButton: {
     position: "absolute",
     zIndex: 99,
-    left: 0,
-    top: 10,
+    right: 0,
+    bottom: "20%",
     padding: 25,
   },
   error: {

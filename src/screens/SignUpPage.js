@@ -77,7 +77,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
         </TouchableOpacity>
         <Image
           style={styles.img}
-          source={require("../../assets/imgs/IMG2.jpg")}
+          source={require("../../assets/imgs/IMG4.jpg")}
         />
         <View style={styles.inputContainer}>
           <Text style={styles.title}>Sign up for Camplance</Text>
@@ -87,10 +87,11 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               onChangeText={setFullname}
               style={styles.insideInput}
               placeholder="Full Name"
-              placeholderTextColor={"#fff"}
+              placeholderTextColor={"white"}
               autoCapitalize={false}
               autoCorrect={false}
               autoComplete={"off"}
+              selectionColor={"white"}
             />
           </View>
           <View style={styles.input}>
@@ -103,6 +104,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               autoCapitalize={false}
               autoComplete={false}
               autoCorrect={false}
+              selectionColor={"white"}
             />
           </View>
           <View style={styles.input}>
@@ -116,6 +118,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               autoCapitalize={false}
               autoCorrect={false}
               autoComplete={"off"}
+              selectionColor={"white"}
             />
           </View>
           {msg}
