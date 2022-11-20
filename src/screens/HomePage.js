@@ -61,7 +61,7 @@ export default function HomePage({ navigation: { navigate } }) {
             <View>
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => navigate("Leaderboard")}
+                onPress={() => navigate("Trips")}
               >
                 <FontAwesome5 name="plus" size={24} color="black" />
               </TouchableOpacity>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   scroll: {
-    flex: 1
+    flex: 1,
   },
   inputContainer: {
     flex: 1,
@@ -192,13 +192,13 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     marginTop: 8,
-    width: 280,
+    width: 256,
   },
   button: {
     height: 72,
     width: 72,
     backgroundColor: "white",
-    marginLeft: -30,
+    marginLeft: 0,
     borderRadius: 100,
     justifyContent: "center",
     alignItems: "center",

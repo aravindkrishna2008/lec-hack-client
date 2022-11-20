@@ -6,6 +6,7 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -16,8 +17,8 @@ import axios from "axios";
 const config = {
   headers: {
     accept: "application/json",
-  }
-}
+  },
+};
 
 const DetailsPage = ({ route, navigation }) => {
   const { item } = route.params;
@@ -58,10 +59,10 @@ const DetailsPage = ({ route, navigation }) => {
           position: "absolute",
         }}
       >
-        <View style={styles.stuff}>
+        <ScrollView style={styles.inputContainer}>
           <Text style={styles.text}>{info.fullName}</Text>
           <Text style={styles.descriptiosn}>{info.description}</Text>
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -69,15 +70,17 @@ const DetailsPage = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   text: {
-    color: "black",
+    color: "white",
     marginTop: 100,
     fontSize: 36,
     fontWeight: "bold",
+    marginLeft: 20,
   },
   descriptiosn: {
-    color: "black",
-    marginTop: 100,
+    color: "white",
+    marginTop: 20,
     fontSize: 20,
+    margin: 20,
   },
   container: {
     flex: 1,
@@ -91,18 +94,18 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 1,
-    alignContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    marginTop: "72%",
+    // alignContent: "center",
+    // alignItems: "center",
+    marginTop: "100%",
     backgroundColor: "#05143f",
     width: "100%",
     borderRadius: 20,
     height: "100%",
+    color: "white",
   },
   img: {
     width: "100%",
-    maxHeight: "100%",
+    maxHeight: "70%",
   },
   input: {
     marginTop: 30,
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 24,
     fontWeight: "bold",
+    color: "white",
   },
   button1: {
     width: "72%",
