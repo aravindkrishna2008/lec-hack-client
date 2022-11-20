@@ -16,6 +16,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase_init";
+import { MaterialIcons } from "@expo/vector-icons";
 
 export default function HomePage({ navigation: { navigate } }) {
   const SignOut = () => {
@@ -34,6 +35,12 @@ export default function HomePage({ navigation: { navigate } }) {
       <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
       <TouchableOpacity style={styles.backButton} onPress={() => SignOut()}>
         <AntDesign name="back" size={32} color="white" />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.profile}
+        onPress={() => navigate("AccountScreen")}
+      >
+        <MaterialIcons name="account-circle" size={32} color="white" />
       </TouchableOpacity>
       <View style={styles.inputContainer}>
         <View style={styles.containerOutside}>
@@ -156,6 +163,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 99,
     left: 0,
+    top: 10,
+    padding: 25,
+  },
+  profile: {
+    position: "absolute",
+    zIndex: 99,
+    left: "80%",
     top: 10,
     padding: 25,
   },
