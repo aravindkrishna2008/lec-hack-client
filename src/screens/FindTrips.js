@@ -1,33 +1,45 @@
-import React, { useState, useEffect } from 'react'
-import { View, FlatList, Text, TouchableOpacity, SafeAreaView } from 'react-native'
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 
-export default function FindTrips ({ navigation: { navigate } }) {
-  const [trips, setTrips] = useState([])
+export default function FindTrips({ navigation: { navigate } }) {
+  const [trips, setTrips] = useState([]);
 
   useEffect(() => {
-    fetch('https://LECHacksBackendServer.alphasquad.repl.co/hikes/all')
-      .then(res => res.json())
-      .then(data => setTrips(data))
-  }, [])
+    fetch("https://LECHacksBackendServer.alphasquad.repl.co/hikes/all")
+      .then((res) => res.json())
+      .then((data) => setTrips(data));
+  }, []);
 
+  console.log(trips);
   return (
     <SafeAreaView>
       <FlatList
         renderItem={({ index, item }) => {
           return (
-              <TouchableOpacity key={`find-trips-item-${index}`} onPress={() => navigate('SpecTrip', {
-                tid: item.hid
-              })}>
+            <TouchableOpacity
+              key={`find-trips-item-${index}`}
+              onPress={() =>
+                navigate("SpecTrip", {
+                  tid: item.hid,
+                })
+              }
+            >
               <Text>{item.title}</Text>
-                  <Text>
-                      {JSON.stringify(item)}
+              <Text>
+                {JSON.stringify(item)}
                 {item.miles} miles by {item.user}
               </Text>
             </TouchableOpacity>
-          )
+          );
         }}
         data={trips}
       />
     </SafeAreaView>
-  )
+  );
 }
