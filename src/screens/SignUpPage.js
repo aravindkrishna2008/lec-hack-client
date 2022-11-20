@@ -82,8 +82,8 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               placeholderTextColor={'#fff'}
               secureTextEntry
               autoCapitalize={false}
-              autoComplete={false}
               autoCorrect={false}
+              autoComplete={'off'}
             />
           </View>
           <TouchableOpacity
@@ -92,7 +92,7 @@ const SignUpScreen = ({ navigation: { navigate } }) => {
               handleSignUp()
             }}
           >
-            <Text style={styles.text1}>Login</Text>
+            <Text style={styles.text1}>Register</Text>
           </TouchableOpacity>
         </View>
       </View>

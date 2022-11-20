@@ -77,8 +77,8 @@ export default function LoginPage({ navigation: { navigate } }) {
                 placeholderTextColor={"#fff"}
                 secureTextEntry
                 autoCapitalize={false}
-                autoComplete={false}
                 autoCorrect={false}
+                autoComplete={'off'}
               />
             </View>
             <TouchableOpacity
