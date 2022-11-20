@@ -48,8 +48,16 @@ const DetailsPage = ({ route, navigation }) => {
           uri: datas,
         }}
         width={"100%"}
-        height={"90%"}
+        height={"100%"}
       />
+      <View
+        style={{
+          zIndex: 99,
+          position: "absolute",
+        }}
+      >
+        <Text>Hello World</Text>
+      </View>
     </View>
   );
 };
@@ -78,7 +86,7 @@ const styles = StyleSheet.create({
   },
   img: {
     width: "100%",
-    maxHeight: "80%",
+    maxHeight: "100%",
   },
   input: {
     marginTop: 30,
