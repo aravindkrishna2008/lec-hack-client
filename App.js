@@ -8,11 +8,11 @@ import StartUpPage from "./src/screens/StartUpPage";
 import SignUpPage from "./src/screens/SignUpPage";
 import HomePage from "./src/screens/HomePage";
 
-import ApiPage from "./src/screens/ApiPage";
+import ApiPage from "./src/screens/ExplorePage";
 import LoginPage from "./src/screens/LoginPage";
 import AccountScreen from "./src/screens/AccountScreen";
 import TripsPage from "./src/screens/TripsPage";
-
+import DetailsPage from "./src/screens/Details";
 //Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -55,6 +55,16 @@ function MyStack() {
       <Stack.Screen
         name="AccountScreen"
         component={AccountScreen}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen
+        name="Details"
+        component={DetailsPage}
+        options={{ headerShown: false }}
+      /> */}
+      <Stack.Screen
+        name="Details"
+        component={DetailsPage}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

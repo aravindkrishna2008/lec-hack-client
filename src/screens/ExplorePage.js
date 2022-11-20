@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import axios from "axios";
 
 const config = {
@@ -8,36 +14,67 @@ const config = {
   },
 };
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
 
-const ApiPage = () => {
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
+const ApiPage = ({ navigation: { navigate } }) => {
   const [data, setData] = useState([]);
-  const renderItem = ({ item }) => <Item title={item.fullName} />;
+  const [image, setImage] = useState([]);
+
+  const Item = ({ item }) => {
+    return (
+      <TouchableOpacity
+        onPress={() =>
+          navigate("Details", {
+            item: item.parkCode,
+          })
+        }
+      >
+        <View style={styles.item}>
+          {/* <Image source={{ uri: image }} /> */}
+          <Text style={styles.title}>{item.name}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+  const renderItem = ({ item }) => <Item item={item} />;
   useEffect(() => {
     const getData = async () => {
       const data = await axios
         .get(
-          "https://developer.nps.gov/api/v1/activities/parks?id=&q=hiking&limit=10&api_key=7o6gVoqugCb39jY9QMHXMR50TLvue5GAjwC6tb1L",
+          "https://developer.nps.gov/api/v1/activities/parks?id=&q=hiking&limit=10&api_key=7UnipARVuUlgr4oLxDn5VNvK01AX9CzbfxCcquiy",
           config
         )
         .then((res) => {
-          setData(res.data.data[0].parks);
+          setData(res.data.data[0].parks).slice(0, 30);
         });
     };
     getData();
   }, []);
 
-  console.log(data);
-
   return (
-    <View>
+    <View style={{ backgroundColor: "#05143f" }}>
       <Text>ApiPage</Text>
       <FlatList
-        data={data}
+        // numColumns={2}
+        data={shuffle(data)}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
@@ -45,6 +82,21 @@ const ApiPage = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  item: {
+    backgroundColor: "#112a72",
+    marginHorizontal: "10%",
+    marginBottom: 10,
+    marginTop: 10,
+    padding: 10,
+    borderRadius: 20,
+    width: "80%",
+  },
+  title: {
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+});
 
 export default ApiPage;
