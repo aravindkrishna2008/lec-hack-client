@@ -22,6 +22,7 @@ const config = {
 const DetailsPage = ({ route, navigation }) => {
   const { item } = route.params;
   const [datas, setData] = useState("");
+  const [info, setInfo] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -32,7 +33,7 @@ const DetailsPage = ({ route, navigation }) => {
         )
         .then((res) => {
           setData(res.data.data[0].images[0].url);
-          console.log(res.data.data[0].images[0].url);
+          setInfo(res.data.data[0]);
         });
     };
     getData();
@@ -50,19 +51,34 @@ const DetailsPage = ({ route, navigation }) => {
         width={"100%"}
         height={"100%"}
       />
+
       <View
         style={{
           zIndex: 99,
           position: "absolute",
         }}
       >
-        <Text>Hello World</Text>
+        <View style={styles.stuff}>
+          <Text style={styles.text}>{info.fullName}</Text>
+          <Text style={styles.descriptiosn}>{info.description}</Text>
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  text: {
+    color: "black",
+    marginTop: 100,
+    fontSize: 36,
+    fontWeight: "bold",
+  },
+  descriptiosn: {
+    color: "black",
+    marginTop: 100,
+    fontSize: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: "#05143f",
