@@ -63,7 +63,7 @@ export default function HomePage({ navigation: { navigate } }) {
           <View>
             <TouchableOpacity
               style={styles.button}
-              // onPress={() => navigate("ApiPage")}
+              onPress={() => navigate("Trips")}
             >
               <FontAwesome5 name="mountain" size={24} color="#05143f" />
             </TouchableOpacity>
