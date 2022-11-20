@@ -16,7 +16,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase_init";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
 
 export default function HomePage({ navigation: { navigate } }) {
   const SignOut = () => {
@@ -31,53 +31,95 @@ export default function HomePage({ navigation: { navigate } }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.img} source={require("../../assets/imgs/bob.jpg")} />
-      <TouchableOpacity style={styles.backButton} onPress={() => SignOut()}>
-        <AntDesign name="back" size={32} color="white" />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.profile}
-        onPress={() => navigate("AccountScreen")}
-      >
-        <MaterialIcons name="account-circle" size={32} color="white" />
-      </TouchableOpacity>
-      <View style={styles.inputContainer}>
-        <View style={styles.containerOutside}>
-          <View>
-            <Text style={styles.title}>Create New Plan</Text>
-            <Text style={styles.description}>
-              Create a new plan for your next camping trip!
-            </Text>
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      style={styles.container}
+    >
+      <View style={styles.scroll}>
+        <Image
+          style={styles.img}
+          source={require("../../assets/imgs/bob.jpg")}
+        />
+        <TouchableOpacity style={styles.backButton} onPress={() => SignOut()}>
+          <AntDesign name="back" size={32} color="white" />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.profile}
+          onPress={() => navigate("AccountScreen")}
+        >
+          <MaterialIcons name="account-circle" size={32} color="white" />
+        </TouchableOpacity>
+        <View style={styles.inputContainer}>
+          <View style={styles.containerOutside}>
+            <View>
+              <Text style={styles.title}>Share your experience</Text>
+              <Text style={styles.description}>
+                Share your previous hikes and camps with the world for better
+                wellness
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigate("Leaderboard")}
+              >
+                <FontAwesome5 name="plus" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigate("Trips")}
-            >
-              <FontAwesome5 name="plus" size={24} color="black" />
-            </TouchableOpacity>
+          <View style={styles.containerOutside}>
+            <View>
+              <Text style={styles.title}>View Experiences</Text>
+              <Text style={styles.description}>
+                Take inspiration from numerous experiences that others have
+                enjoyed
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigate("FindTrips")}
+              >
+                <FontAwesome name="globe" size={40} color="black" />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        {/* TODO: add the feature to explore plans*/}
-        <View style={styles.containerOutside}>
-          <View>
-            <Text style={styles.title}>Explore</Text>
-            <Text style={styles.description}>
-              Discover popular hiking trails{" "}
-            </Text>
+          {/* TODO: add the feature to explore plans*/}
+          <View style={styles.containerOutside}>
+            <View>
+              <Text style={styles.title}>Explore</Text>
+              <Text style={styles.description}>
+                Discover popular hiking trails{" "}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigate("ApiPage")}
+              >
+                <FontAwesome5 name="mountain" size={24} color="#05143f" />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => navigate("ApiPage")}
-            >
-              <FontAwesome5 name="mountain" size={24} color="#05143f" />
-            </TouchableOpacity>
+          <View style={styles.containerOutside}>
+            <View>
+              <Text style={styles.title}>leaderboard</Text>
+              <Text style={styles.description}>
+                Compete against others to travel the most{" "}
+              </Text>
+            </View>
+            <View>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => navigate("Leaderboard")}
+              >
+                <FontAwesome5 name="mountain" size={24} color="#05143f" />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -86,7 +128,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#05143f",
     alignContent: "center",
-    alignItems: "center",
+  },
+  scroll: {
+    flex: 1
   },
   inputContainer: {
     flex: 1,

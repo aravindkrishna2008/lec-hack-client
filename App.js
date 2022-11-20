@@ -16,6 +16,9 @@ import DetailsPage from "./src/screens/Details";
 //Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import FindTrips from "./src/screens/FindTrips";
+import Users from "./src/screens/Users";
+import DetailTrips from "./src/screens/DetailTrips";
 
 const Stack = createStackNavigator();
 
@@ -55,6 +58,21 @@ function MyStack() {
       <Stack.Screen
         name="AccountScreen"
         component={AccountScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="FindTrips"
+        component={FindTrips}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Leaderboard"
+        component={Users}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="SpecTrip"
+        component={DetailTrips}
         options={{ headerShown: false }}
       />
       {/* <Stack.Screen

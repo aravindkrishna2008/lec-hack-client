@@ -16,8 +16,8 @@ import axios from "axios";
 const config = {
   headers: {
     accept: "application/json",
-  },
-};
+  }
+}
 
 const DetailsPage = ({ route, navigation }) => {
   const { item } = route.params;
