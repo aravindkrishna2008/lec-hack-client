@@ -70,7 +70,7 @@ const ApiPage = ({ navigation: { navigate } }) => {
   }, []);
 
   return (
-    <View style={{ backgroundColor: "#05143f" }}>
+    <View style={{ backgroundColor: "#05143f", height: "100%" }}>
       <Text>ApiPage</Text>
       <FlatList
         // numColumns={2}
